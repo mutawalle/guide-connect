@@ -1,133 +1,95 @@
-import { useState, useEffect, useCallback } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, Position, Edge, Connection } from 'reactflow';
-import 'reactflow/dist/style.css';
+import { useEffect } from 'react'
+import ReactFlow, { useNodesState, useEdgesState, Position } from 'reactflow'
+import BaseNode from './BaseNode'
+import 'reactflow/dist/style.css'
 
-import ColorSelectorNode from './ColorSelectorNode';
-
-import './index.css';
-import BaseNode from './BaseNode';
-
-const initBgColor = '#4f46e5';
+const initBgColor = '#ffffff'
 
 const connectionLineStyle = { stroke: '#fff' }
 const nodeTypes = {
-  selectorNode: ColorSelectorNode,
   baseNode: BaseNode
-};
+}
 
-const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
+const defaultViewport = { x: 0, y: 0, zoom: 1 }
 
 const CustomNodeFlow = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [bgColor, setBgColor] = useState(initBgColor);
+  const [nodes, setNodes] = useNodesState([])
+  const [edges, setEdges] = useEdgesState([])
 
   useEffect(() => {
-    const onChange = (event: any) => {
-      setNodes((nds) =>
-        nds.map((node) => {
-          if (node.id !== '2') {
-            return node;
-          }
-
-          const color = event.target?.value;
-
-          setBgColor(color);
-
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              color,
-            },
-          };
-        })
-      );
-    };
-
     setNodes([
       {
         id: '1',
-        type: 'input',
-        data: { label: 'An input node' },
-        position: { x: 0, y: 50 },
+        type: 'baseNode',
+        data: {},
+        position: { x: 10, y: 30 },
         sourcePosition: Position.Left,
+        draggable: false
       },
       {
         id: '2',
-        type: 'selectorNode',
-        data: { onChange: onChange, color: initBgColor },
-        style: { border: '1px solid #777', padding: 10 },
-        position: { x: 300, y: 50 },
+        type: 'baseNode',
+        data: {},
+        position: { x: 180, y: 100 },
+        sourcePosition: Position.Left,
+        draggable: false
       },
       {
         id: '3',
-        type: 'output',
-        data: { label: 'Output A' },
-        position: { x: 650, y: 25 },
-        targetPosition: Position.Left,
+        type: 'baseNode',
+        data: {},
+        position: { x: 180, y: 30 },
+        sourcePosition: Position.Left,
+        draggable: false
       },
       {
         id: '4',
-        type: 'output',
-        data: { label: 'Output B' },
-        position: { x: 650, y: 100 },
-        targetPosition: Position.Left,
-      },
-      {
-        id: '5',
         type: 'baseNode',
-        data: { label: 'Base Node' },
-        position: { x: 0, y: 40 },
-        targetPosition: Position.Left,
-      }
+        data: {},
+        position: { x: 280, y: 300 },
+        sourcePosition: Position.Left,
+        draggable: false
+      },
     ]);
-
     setEdges([
+      {
+        id: 'e1-3',
+        source: '1',
+        target: '3',
+        style: { stroke: "#60a5fa", strokeWidth: "20"},
+      },
       {
         id: 'e1-2',
         source: '1',
         target: '2',
-        animated: true,
-        style: { stroke: '#fff' },
+        style: { stroke: "#60a5fa", strokeWidth: "20"},
       },
       {
-        id: 'e2a-3',
-        source: '2',
-        target: '3',
-        sourceHandle: 'a',
-        animated: true,
-        style: { stroke: '#fff' },
-      },
-      {
-        id: 'e2b-4',
-        source: '2',
+        id: 'e3-4',
+        source: '3',
         target: '4',
-        sourceHandle: 'b',
-        animated: true,
-        style: { stroke: '#fff' },
+        style: { stroke: "#60a5fa", strokeWidth: "20"},
+        targetHandle: 'b',
+        type: 'smoothstep'
       },
     ]);
   }, []);
 
-  const onConnect = useCallback(
-    (params: Edge | Connection) =>
-      setEdges((eds) => addEdge({ ...params, animated: true, style: { stroke: '#fff' } }, eds)),
-    []
-  );
   return (
     <div className='w-96 h-96 bg-slate-300 mx-auto border'>
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        style={{ background: bgColor }}
+        style={{ background: initBgColor }}
         nodeTypes={nodeTypes}
         connectionLineStyle={connectionLineStyle}
         defaultViewport={defaultViewport}
-        attributionPosition="bottom-left"
+        panOnScrollSpeed={0.5}
+        panOnDrag={false}
+        panOnScroll={false}
+        zoomOnDoubleClick={false}
+        zoomOnPinch={false}
+        zoomOnScroll={false}
       />
     </div>
   );
