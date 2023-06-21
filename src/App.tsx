@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Login from "./features/auth/login";
 import Home from "./features/home";
+import Post from "./features/postEditor/Post";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
         {
           path: "home",
           element: <Home />,
+        },
+        {
+          path: "post",
+          element: <Post/>
         }
       ],
     },
@@ -37,6 +42,7 @@ function Root() {
 }
 
 export default function App() {
+  
   return (
     <RouterProvider router={router}/>
   )

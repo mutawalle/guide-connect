@@ -1,0 +1,45 @@
+.react-flow__node-selectorNode {
+  font-size: 12px;
+  background: #eee;
+  border: 1px solid #555;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+.ScrollAreaRoot {
+  width: 200px;
+  height: 225px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px grey;
+  background-color: white;
+}
+
+.ScrollAreaViewport {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.ScrollAreaScrollbar {
+  display: flex;
+  /* ensures no selection */
+  user-select: none;
+  /* disable browser handling of all panning and zooming gestures on touch devices */
+  touch-action: none;
+  padding: 2px;
+  background: #ccc;
+  transition: background 160ms ease-out;
+}
+
+.ScrollAreaScrollbar[data-orientation='vertical'] {
+  width: 2rem;
+}
+
+.ScrollAreaThumb {
+  flex: 1;
+  background: #555;
+  border-radius: 3px;
+  position: relative;
+}
