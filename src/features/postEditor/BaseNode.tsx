@@ -11,7 +11,7 @@ function BaseNode({ data }: NodeProps) {
             <Handle id='d' type="source" position={Position.Bottom} className='invisible'/>
             <Popover.Root>
                 <Popover.Trigger asChild>
-                    <button className="rounded-full shadow-xl hover:shadow-none" aria-label="Update dimensions">
+                    <button className="rounded-full" aria-label="Update dimensions">
                         <div className='w-12 h-12 flex justify-center items-center bg-sky-600 rounded-full'>
                             <div className='w-10 h-10 flex justify-center items-center bg-white rounded-full'>
                                     <div className='w-7 h-7 bg-sky-500 rounded-full' />
