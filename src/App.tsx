@@ -3,6 +3,7 @@ import {
   Navigate,
   Outlet,
   RouterProvider,
+  useLocation,
 } from "react-router-dom";
 import Login from "./features/auth/login";
 import Home from "./features/home";
@@ -36,6 +37,12 @@ export const router = createBrowserRouter([
 ])
 
 function Root() {
+  const location = useLocation()
+
+  if(location.pathname === "/"){
+    return <Navigate to="/home"/>
+  }
+
   return (
     <Outlet />
   );
