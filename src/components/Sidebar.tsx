@@ -35,9 +35,8 @@ const Sidebar = () => {
                 <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
             </svg>
         </button>
-        <aside ref={sidebarRef} id="sidebar" className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0 `} aria-label="Sidebar">
-            <div className="flex flex-col h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <aside ref={sidebarRef} id="sidebar" className={`w-80 border-r h-screen shadow-[0px_0px_8px_1px_rgba(0,0,0,0.05)] border-slate-300`} aria-label="Sidebar">
+            <div className="flex flex-col h-full px-3 py-4 overflow-y-auto bg-white dark:bg-slate-800">
                 <div className="flex items-center pl-2.5 my-8">
                 <div className="bg-black dark:bg-white w-6 h-6 mr-3 sm:h-7 rounded-full"></div>
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">blabla</span>

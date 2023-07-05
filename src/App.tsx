@@ -4,10 +4,10 @@ import {
   Outlet,
   RouterProvider,
   useLocation,
-} from "react-router-dom";
-import Login from "./features/auth/login";
-import Home from "./features/home";
-import Post from "./features/postEditor/Post";
+} from "react-router-dom"
+import Login from "./features/auth/Login"
+import Home from "./features/home"
+import Post from "./features/post/Post"
 
 export const router = createBrowserRouter([
     {

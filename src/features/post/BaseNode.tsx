@@ -41,7 +41,6 @@ function BaseNode({ data }: NodeProps) {
                             <ScrollArea.Scrollbar className="w-2 mr-1 flex touch-none select-none" orientation="vertical">
                                 <ScrollArea.Thumb className="grow relative rounded-md bg-slate-500" />
                             </ScrollArea.Scrollbar>
-                            <ScrollArea.Corner className="ScrollAreaCorner" />
                         </ScrollArea.Root>
                         <Popover.Arrow className="fill-slate-100" />
                     </Popover.Content>
