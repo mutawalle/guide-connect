@@ -1,12 +1,11 @@
 import Sidebar from "@/components/Sidebar"
-import Post from "../post/Post"
-import ListPost from "../post/ListPost"
+import ListGuide from "../guide/components/ListGuide"
 
 function Home() {
   return (
     <div className="flex bg-slate-50">
       <Sidebar />
-      <ListPost/>
+      <ListGuide/>
     </div>
   )
 }

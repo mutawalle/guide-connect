@@ -1,14 +1,19 @@
 import { Handle, NodeProps, Position } from 'reactflow'
 import * as Popover from '@radix-ui/react-popover'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { NodeData } from '../type/Guide'
 
-function BaseNode({ data }: NodeProps) {
+function BaseNode({ data }: NodeProps<NodeData>) {
     return (
         <>
-            <Handle id='a' type="target" position={Position.Left} className='invisible'/>
-            <Handle id='b' type="target" position={Position.Top} className='invisible'/>
+            <Handle id='a' type="source" position={Position.Left} className='invisible'/>
+            <Handle id='b' type="source" position={Position.Top} className='invisible'/>
             <Handle id='c' type="source" position={Position.Right} className='invisible'/>
             <Handle id='d' type="source" position={Position.Bottom} className='invisible'/>
+            <Handle id='e' type="target" position={Position.Left} className='invisible'/>
+            <Handle id='f' type="target" position={Position.Top} className='invisible'/>
+            <Handle id='g' type="target" position={Position.Right} className='invisible'/>
+            <Handle id='h' type="target" position={Position.Bottom} className='invisible'/>
             <Popover.Root>
                 <Popover.Trigger asChild>
                     <button className="rounded-full" aria-label="Update dimensions">
@@ -24,18 +29,22 @@ function BaseNode({ data }: NodeProps) {
                         <ScrollArea.Root className="w-72 h-48 bg-slate-100 rounded-lg shadow-xl">
                             <ScrollArea.Viewport className='w-full h-full rounded-lg'>
                                 <div className='w-full h-full p-4'>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
-                                    <div>ckehrwfir</div>
+                                    <h4>{data.title}</h4>
+                                    {
+                                        data.description.map((desc) => <p>{desc}</p>)
+                                    }
+                                    {
+                                        data.minimumCompetences.length > 0 &&
+                                        <>
+                                            <h5>Minimum Competences</h5>
+                                            {
+                                                data.minimumCompetences
+                                            }
+                                        </>
+                                    }
+                                    {
+                                        
+                                    }
                                 </div>
                             </ScrollArea.Viewport>
                             <ScrollArea.Scrollbar className="w-2 mr-1 flex touch-none select-none" orientation="vertical">

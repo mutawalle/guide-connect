@@ -5,6 +5,7 @@ import 'reactflow/dist/style.css'
 import Profile from '@/components/Profile'
 import { AiOutlineComment, AiOutlineLike, AiOutlineMore, AiOutlineSave, AiOutlineSend, AiOutlineShareAlt, AiOutlineSmile } from 'react-icons/ai'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { NodeData } from '../type/Guide'
 
 const initBgColor = '#ffffff'
 
@@ -15,8 +16,8 @@ const nodeTypes = {
 
 const defaultViewport = { x: 0, y: 0, zoom: 1.2 }
 
-const Post = () => {
-  const [nodes, setNodes] = useNodesState([])
+const Guide = () => {
+  const [nodes, setNodes] = useNodesState<NodeData>([])
   const [edges, setEdges] = useEdgesState([])
 
   useEffect(() => {
@@ -24,7 +25,13 @@ const Post = () => {
       {
         id: '1',
         type: 'baseNode',
-        data: {},
+        data: {
+          title: "1",
+          description: ["ewuhf wiuefw efiuwe"],
+          learningSources: [],
+          images: [],
+          minimumCompetences: []
+        },
         position: { x: 10, y: 30 },
         sourcePosition: Position.Left,
         draggable: false
@@ -32,7 +39,13 @@ const Post = () => {
       {
         id: '2',
         type: 'baseNode',
-        data: {},
+        data: {
+          title: "2",
+          description: ["ewuhf wiuefw efiuwe"],
+          learningSources: [],
+          images: [],
+          minimumCompetences: []
+        },
         position: { x: 180, y: 100 },
         sourcePosition: Position.Left,
         draggable: false
@@ -40,7 +53,13 @@ const Post = () => {
       {
         id: '3',
         type: 'baseNode',
-        data: {},
+        data: {
+          title: "3",
+          description: ["ewuhf wiuefw efiuwe"],
+          learningSources: [],
+          images: [],
+          minimumCompetences: []
+        },
         position: { x: 180, y: 30 },
         sourcePosition: Position.Left,
         draggable: false
@@ -48,7 +67,13 @@ const Post = () => {
       {
         id: '4',
         type: 'baseNode',
-        data: {},
+        data: {
+          title: "4",
+          description: ["ewuhf wiuefw efiuwe"],
+          learningSources: [],
+          images: [],
+          minimumCompetences: []
+        },
         position: { x: 280, y: 300 },
         sourcePosition: Position.Left,
         draggable: false
@@ -144,4 +169,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Guide;

@@ -87,7 +87,7 @@ const Sidebar = () => {
                     </ul>
                 </div>
                 <span className="flex-grow"></span>
-                <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="/create-post" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <div className="bg-black dark:bg-white w-6 h-6 rounded-full"></div>
                     <span className="ml-3">Create Post</span>
                 </a>

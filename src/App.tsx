@@ -7,7 +7,8 @@ import {
 } from "react-router-dom"
 import Login from "./features/auth/Login"
 import Home from "./features/home"
-import Post from "./features/post/Post"
+import Guide from "./features/guide/components/Guide"
+import GuideCreatorPage from "./features/guide/components/GuideCreatorPage"
 
 export const router = createBrowserRouter([
     {
@@ -29,8 +30,12 @@ export const router = createBrowserRouter([
           element: <Home />,
         },
         {
-          path: "post",
-          element: <Post/>
+          path: "guide",
+          element: <Guide/>
+        },
+        {
+          path: "create-guide",
+          element: <GuideCreatorPage/>
         }
       ],
     },
@@ -38,6 +43,8 @@ export const router = createBrowserRouter([
 
 function Root() {
   const location = useLocation()
+
+  console.log("suhfiuse")
 
   if(location.pathname === "/"){
     return <Navigate to="/home"/>
