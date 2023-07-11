@@ -2,7 +2,7 @@ import React from 'react'
 
 const FormRegister = () => {
   return (
-    <div className='p-12 bg-white h-fit w-1/3 flex flex-col rounded-lg shadow-xl flex items-start'>  
+    <div className='p-12 bg-white h-fit w-fit flex flex-col rounded-lg shadow-xl flex items-start'>  
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900">
             Register your account
         </h1>
