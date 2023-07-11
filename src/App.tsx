@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom"
 import Login from "./features/auth/Login"
+import Register from "./features/auth/Register"
 import Home from "./features/home"
 import Guide from "./features/guide/components/Guide"
 import GuideCreatorPage from "./features/guide/components/GuideCreatorPage"
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
           path: "login",
           element: <Login/>,
         },
+        {
+          path: "register",
+          element: <Register/>,
+        }
       ],
     },
     {
