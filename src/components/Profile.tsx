@@ -1,19 +1,25 @@
+import clsx from "clsx"
+
 type ProfileProps = {
-    name: string,
+    name?: string,
     urlImage?: string,
-    desc?: string 
+    desc?: string,
+    className?: string
 }
 
 
-function Profile({name, urlImage, desc}: ProfileProps) {
+function Profile({name, urlImage, desc, className}: ProfileProps) {
   return (
-    <div className="flex items-center">
-        <div className="w-10 h-10 bg-sky-200 rounded-full">
+    <div className={clsx(className,"flex items-center")}>
+        <div className="w-9 h-9 bg-sky-200 rounded-full">
         </div>
-        <div className="ml-2">
-            <h4 className="text-sm font-semibold leading-3">{name}</h4>
-            <p className="text-sm text-slate-500 leading-5">{desc}</p>
-        </div>
+        {
+          name &&
+          <div className="ml-2">
+              <h4 className="text-sm font-semibold leading-3">{name}</h4>
+              <p className="text-sm text-slate-500 leading-5">{desc}</p>
+          </div>
+        }
     </div>
   )
 }

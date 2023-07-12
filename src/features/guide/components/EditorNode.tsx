@@ -7,11 +7,11 @@ import { NodeData } from '../type/Guide'
 import { v4 as uuidv4 }from 'uuid'
 import { useCreateGuideAction, useCreateGuideStore } from '@/stores/CreateGuide'
 
-function EditorNode({ id, data, xPos, yPos }: NodeProps<NodeData>) {
+function EditorNode({ id, type, data, xPos, yPos }: NodeProps<NodeData>) {
 
     const guide = useCreateGuideStore((state) => state.guide)
-    const selectedNodeId = useCreateGuideStore((state) => state.selectedNodeId)
-    const {setGuide, setSelectedNodeId} = useCreateGuideAction()
+    const selectedNode = useCreateGuideStore((state) => state.selectedNode)
+    const {setGuide, setSelectedNode} = useCreateGuideAction()
 
     useEffect(() => {
         console.log(data)
@@ -29,12 +29,15 @@ function EditorNode({ id, data, xPos, yPos }: NodeProps<NodeData>) {
                     type: 'editorNode',
                     data: {
                         title: "reygfre",
-                        description: ["vrif"],
+                        descriptions: ["vrif"],
                         images: [],
                         minimumCompetences: [],
                         learningSources: []
                     },
-                    position: { x: xPos-30, y: 30 },
+                    position: { 
+                        x: srcH == 'a' ? xPos-30 : srcH == 'c' ? xPos+30 : xPos, 
+                        y: srcH == 'b' ? yPos-30 : srcH == 'd' ? yPos+30 : yPos
+                    },
                     draggable: true
                 }
             ],
@@ -64,15 +67,15 @@ function EditorNode({ id, data, xPos, yPos }: NodeProps<NodeData>) {
             <Handle id='h' type="target" position={Position.Bottom} className='invisible' />
             <div className='w-24 h-24 flex flex-col items-center justify-evenly'>
                 {
-                    id == selectedNodeId &&
-                    <button className='rounded-full border-2 border-sky-600' onClick={() => {console.log("surfh")}}><AiOutlinePlus color='blue' /></button>
+                    id == selectedNode?.id &&
+                    <button className='rounded-full border-2 border-sky-600' onClick={() => addNode("b", "h")}><AiOutlinePlus color='blue' /></button>
                 }
                 <div className='w-full flex items-center justify-evenly'>
                     {
-                        id == selectedNodeId && 
+                        id == selectedNode?.id && 
                         <button className='h-min rounded-full border-2 border-sky-600' onClick={() => addNode("a", "g")}><AiOutlinePlus color='blue' /></button>
                     }
-                    <button className="rounded-full" aria-label="Update dimensions" onClick={() => setSelectedNodeId(id)}>
+                    <button className="rounded-full" aria-label="Update dimensions" onClick={() => setSelectedNode({id, type, data, position: {x: xPos, y: yPos}})}>
                         <div className='w-12 h-12 flex justify-center items-center bg-sky-600 rounded-full'>
                             <div className='w-10 h-10 flex justify-center items-center bg-white rounded-full'>
                                 <div className='w-7 h-7 bg-sky-500 rounded-full' />
@@ -80,13 +83,13 @@ function EditorNode({ id, data, xPos, yPos }: NodeProps<NodeData>) {
                         </div>
                     </button>
                     {
-                        id == selectedNodeId &&
-                        <button className='rounded-full border-2 border-sky-600' onClick={() => {console.log("surfh")}}><AiOutlinePlus color='blue' /></button>
+                        id == selectedNode?.id &&
+                        <button className='rounded-full border-2 border-sky-600' onClick={() => addNode("c", "e")}><AiOutlinePlus color='blue' /></button>
                     }
                 </div>
                 {
-                    id == selectedNodeId &&
-                    <button className='rounded-full border-2 border-sky-600' onClick={() => {console.log("surfh")}}><AiOutlinePlus color='blue' /></button>
+                    id == selectedNode?.id &&
+                    <button className='rounded-full border-2 border-sky-600' onClick={() => addNode("d", "f")}><AiOutlinePlus color='blue' /></button>
                 }
             </div>
         </>

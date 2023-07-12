@@ -1,4 +1,4 @@
-import { Edge, Node } from "reactflow"
+import { Edge, Node, Viewport } from "reactflow"
 
 export type Guide = {
     id: string
@@ -7,15 +7,16 @@ export type Guide = {
     uploadDate: string
     likeCount: number
     commentCount: number
+    viewPort: Viewport
     nodes: Node<NodeData>[]
     edges: Edge[]
 }
 
 export type NodeData = {
     title: string
-    description: string[]
+    descriptions: string[]
     minimumCompetences: string[]
-    images: string[]
+    images: (string | File)[]
     learningSources: LearningSource[]
 }
 

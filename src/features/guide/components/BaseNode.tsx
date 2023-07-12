@@ -2,8 +2,13 @@ import { Handle, NodeProps, Position } from 'reactflow'
 import * as Popover from '@radix-ui/react-popover'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { NodeData } from '../type/Guide'
+import { useEffect } from 'react'
 
 function BaseNode({ data }: NodeProps<NodeData>) {
+
+    useEffect(() => {
+        console.log(data)
+    }, [])
     return (
         <>
             <Handle id='a' type="source" position={Position.Left} className='invisible'/>
@@ -26,24 +31,49 @@ function BaseNode({ data }: NodeProps<NodeData>) {
                 </Popover.Trigger>
                 <Popover.Portal>
                     <Popover.Content className="bg-white" sideOffset={5}>
-                        <ScrollArea.Root className="w-72 h-48 bg-slate-100 rounded-lg shadow-xl">
+                        <ScrollArea.Root className="w-80 h-52 bg-slate-50 rounded-lg shadow-xl">
                             <ScrollArea.Viewport className='w-full h-full rounded-lg'>
                                 <div className='w-full h-full p-4'>
-                                    <h4>{data.title}</h4>
+                                    <h4 className='font-medium'>{data.title}</h4>
                                     {
-                                        data.description.map((desc) => <p>{desc}</p>)
-                                    }
-                                    {
-                                        data.minimumCompetences.length > 0 &&
+                                        data.descriptions.length > 0 &&
                                         <>
-                                            <h5>Minimum Competences</h5>
+                                            <h5 className='mt-2 mb-1'>Description</h5>
                                             {
-                                                data.minimumCompetences
+                                                data.descriptions.map((desc) => <p className='mb-2 text-slate-600'>{desc}</p>)
                                             }
                                         </>
                                     }
                                     {
-                                        
+                                        data.images.length > 0 && 
+                                        <>
+                                            <h5 className='mt-2 mb-1'>Images</h5>
+                                            {
+                                                data.images.map((image) => {
+                                                    if(typeof image == "string"){
+                                                        return <img className='rounded-xl mb-2' src={image}/>
+                                                    }
+                                                })
+                                            }
+                                        </>
+                                    }
+                                    {
+                                        data.minimumCompetences.length > 0 &&
+                                        <>
+                                            <h5 className='mt-2 mb-1'>Minimum Competences</h5>
+                                            {
+                                                data.minimumCompetences.map((minimumCompetence) => <span className='block mb-1 text-slate-600'>{minimumCompetence}</span>)
+                                            }
+                                        </>
+                                    }
+                                    {
+                                        data.learningSources.length > 0 && 
+                                        <>
+                                            <h5 className='mt-3 mb-1'>Learning Resources</h5>
+                                            {
+                                                data.learningSources.map((learningResource) => <a className='block mb-1 text-slate-600' target="_blank" href={learningResource.url}>{learningResource.label}</a>)
+                                            }
+                                        </>
                                     }
                                 </div>
                             </ScrollArea.Viewport>

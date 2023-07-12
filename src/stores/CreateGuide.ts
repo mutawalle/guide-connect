@@ -1,14 +1,14 @@
-import { Guide } from "@/features/guide/type/Guide"
-import { Position } from "reactflow"
+import { Guide, NodeData } from "@/features/guide/type/Guide"
+import { Node, Position } from "reactflow"
 import { create } from "zustand"
 
 type CreateGuideState = {
     guide: Guide
-    selectedNodeId: string
+    selectedNode: Node<NodeData> | undefined
 
     actions: {
         setGuide: (guide: Guide) => void
-        setSelectedNodeId: (selectedNodeId: string) => void
+        setSelectedNode: (selectedNode: Node<NodeData> | undefined) => void
     }
 }
 
@@ -20,12 +20,16 @@ export const useCreateGuideStore = create<CreateGuideState>((set) => ({
         uploadDate: "",
         likeCount: 0,
         commentCount: 0,
+        viewPort: {x: 0,y: 0, zoom: 1.2},
         nodes: [{
             id: '1',
             type: 'editorNode',
             data: {
                 title: "Satu",
-                description: ["djweh wiue diwue"]
+                descriptions: ["djweh wiue diwue"],
+                images: [],
+                learningSources: [],
+                minimumCompetences: []
             },
             position: { x: 10, y: 30 },
             sourcePosition: Position.Left,
@@ -33,14 +37,14 @@ export const useCreateGuideStore = create<CreateGuideState>((set) => ({
           }],
         edges: []
     },
-    selectedNodeId: "",
+    selectedNode: undefined,
 
     actions: {
         setGuide(guide){
             set({guide})
         },
-        setSelectedNodeId(selectedNodeId){
-            set({selectedNodeId})
+        setSelectedNode(selectedNode){
+            set({selectedNode})
         }
     }
 }))
