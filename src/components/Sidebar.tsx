@@ -3,6 +3,7 @@ import { BsSearch } from "react-icons/bs"
 import MenuItem from "./MenuItem"
 import ProgressItem from "./ProgressItem"
 import { FcLandscape } from 'react-icons/fc'
+import DialogDemo from "./Dialog"
 
 const Sidebar = () => {
     return (
@@ -41,6 +42,9 @@ const Sidebar = () => {
                         </li>
                         <li>
                             <ProgressItem label="Investment Roadmap" percentage={70}/>
+                        </li>
+                        <li>
+                            <DialogDemo/>
                         </li>
                     </ul>
                 </div>
